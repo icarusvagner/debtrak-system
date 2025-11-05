@@ -119,7 +119,7 @@ flutter build ios --release
 
 ## 📜 License
 
-MIT License. See `LICENSE` for details.
+MIT & Apache Licenses. See `LICENSE` for details.
 
 ---
 

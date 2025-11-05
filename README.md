@@ -1,16 +1,137 @@
-# debtrak
+# Debtrak
 
-A new Flutter project.
+A modern, lightweight, and intuitive **debt‑tracking fintech mobile app** built with **Flutter**. Debtrak helps users manage their personal loans, borrowings, and repayments with clarity and confidence.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Overview
 
-A few resources to get you started if this is your first Flutter project:
+Debtrak provides a clean and structured way to record debts, monitor balances, and track repayment progress. Whether it’s personal loans, shared expenses, or business-related borrowings, Debtrak ensures users always know **how much they owe** and **how much is owed to them**.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Features
+
+### ✅ Core Functionality
+
+* Add, edit, and delete debt entries
+* Track **borrowed** and **lent** transactions separately
+* Auto-calculate remaining balances
+* Categorize debts (personal, business, recurring, etc.)
+* Mark full or partial repayments
+
+### 📊 Analytics & Insights
+
+* Summary dashboard for total owed / total owing
+* Timeline view of repayments
+* Visual charts (monthly activity, status breakdown)
+
+### 🔔 Notifications
+
+* Optional reminders for due dates
+* Alerts for upcoming or overdue payments
+
+### ☁️ Sync & Backup *(optional)*
+
+* Local storage for offline use
+* Cloud sync via Firebase or Supabase (configurable)
+
+---
+
+## 🛠️ Tech Stack
+
+* **Flutter** (Dart)
+* State management: Provider / Riverpod / Bloc *(project dependent)*
+* Database: Hive / SQLite
+* Charts: fl_chart
+* Optional backend: Firebase / Supabase
+
+---
+
+## 📂 Project Structure
+
+Typical project structure:
+
+```
+lib/
+  core/
+    utils/
+    theme/
+  data/
+    models/
+    repositories/
+  features/
+    debts/
+    dashboard/
+    settings/
+  widgets/
+  main.dart
+```
+
+---
+
+## ▶️ Getting Started
+
+### 1. **Clone the repository**
+
+```bash
+git clone https://github.com/icarusvagner/debtrak.git
+cd debtrak
+```
+
+### 2. **Install dependencies**
+
+```bash
+flutter pub get
+```
+
+### 3. **Run the app**
+
+```bash
+flutter run
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+flutter test
+```
+
+---
+
+## 📦 Build Release
+
+### Android
+
+```bash
+flutter build apk --release
+```
+
+### iOS
+
+```bash
+flutter build ios --release
+```
+
+---
+
+## 📜 License
+
+MIT License. See `LICENSE` for details.
+
+---
+
+## 💡 Future Enhancements
+
+* Multi-currency support
+* Export to PDF/CSV
+* Biometric lock (Face ID / Fingerprint)
+* Shared debt groups for friends & family
+* Budgeting and forecasting modules
+
+---
+
+**Debtrak** — Tracking your debts with clarity and ease.
+

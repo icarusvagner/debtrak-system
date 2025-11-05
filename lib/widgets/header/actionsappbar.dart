@@ -1,6 +1,6 @@
+import 'package:debtrak/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class ActionsAppBar extends StatelessWidget {
   final String title;
@@ -10,37 +10,39 @@ class ActionsAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(DebtrakColors().primary),
       pinned: true,
-      expandedHeight: 75,
-      toolbarHeight: 75,
-      foregroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
+      expandedHeight: 80,
+      toolbarHeight: 80,
+      leading: Builder(
+        builder: (context) => Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: IconButton(
+            icon: const Icon(Icons.menu_rounded, color: Colors.white, size: 28),
+            alignment: AlignmentGeometry.topCenter,
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+      ),
+      foregroundColor: Color(DebtrakColors().secondary),
+      surfaceTintColor: Color(DebtrakColors().secondary),
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 12.0),
           child: Column(
-            spacing: 1.0,
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(LucideIcons.funnel500, size: 42.0),
-                    onPressed: () {},
-                  ),
-                  Text(
-                    title,
-                    textAlign: TextAlign.right,
-                    style: GoogleFonts.roboto(
-                      color: Color(0xFF2A2A2A),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 54,
-                    ),
-                  ),
-                ],
+              Text(
+                title,
+                textAlign: TextAlign.right,
+                style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 34,
+                ),
               ),
             ],
           ),

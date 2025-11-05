@@ -1,4 +1,5 @@
-import 'package:debtrak/pages/home.dart';
+import 'package:debtrak/core/utils/colors.dart';
+import 'package:debtrak/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,9 +13,10 @@ class DebtrakApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-      color: Colors.white,
+      color: Color(DebtrakColors().primary),
       title: "Debtrak",
+      theme: ThemeData(primaryColor: Color(DebtrakColors().primary)),
+      home: HomePage(),
     );
   }
 }

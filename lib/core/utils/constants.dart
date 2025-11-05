@@ -1,3 +1,11 @@
+enum Status { active, pastDue, overDue }
+
+Map<Status, String> statusNames = {
+  Status.active: 'Active',
+  Status.pastDue: 'Past due',
+  Status.overDue: 'Over due',
+};
+
 class Constant {
   final List<String> _months = [
     "Jan",

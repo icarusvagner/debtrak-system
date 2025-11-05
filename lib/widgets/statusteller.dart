@@ -1,6 +1,6 @@
+import 'package:debtrak/core/utils/constants.dart';
 import 'package:flutter/material.dart';
-
-enum Status { active, pastDue, overDue }
+import 'package:google_fonts/google_fonts.dart';
 
 class StatusTeller extends StatelessWidget {
   final Status status;
@@ -8,6 +8,31 @@ class StatusTeller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      spacing: 6.0,
+      children: [
+        CircleAvatar(
+          radius: 6.0,
+          backgroundColor: status.name == 'active'
+              ? Colors.green
+              : status.name == 'pastDue'
+              ? Colors.orangeAccent
+              : Colors.red,
+        ),
+        Text(
+          status.name.toUpperCase(),
+          textAlign: TextAlign.start,
+          style: GoogleFonts.roboto(
+            color: status.name == 'active'
+                ? Colors.green
+                : status.name == 'pastDue'
+                ? Colors.orangeAccent
+                : Colors.red,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
   }
 }

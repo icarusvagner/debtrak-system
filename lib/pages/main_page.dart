@@ -1,3 +1,4 @@
+import 'package:debtrak/features/dashboard/balance.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -5,6 +6,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("this is the main page"));
+    return Scaffold(body: Column(children: [BalanceView()]));
   }
 }

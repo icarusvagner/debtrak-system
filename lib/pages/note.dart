@@ -1,4 +1,4 @@
-import 'package:debtrak/component/onenote.dart';
+import 'package:debtrak/widgets/onenote.dart';
 import 'package:flutter/material.dart';
 
 class NotesPage extends StatelessWidget {

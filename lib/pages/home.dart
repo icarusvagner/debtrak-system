@@ -1,13 +1,11 @@
-import 'package:debtrak/component/header/actionsappbar.dart';
-import 'package:debtrak/component/header/dateappbar.dart';
-import 'package:debtrak/constant.dart';
+import 'package:debtrak/widgets/header/actionsappbar.dart';
+import 'package:debtrak/widgets/header/dateappbar.dart';
 import 'package:debtrak/pages/debtor.dart';
 import 'package:debtrak/pages/history.dart';
 import 'package:debtrak/pages/note.dart';
 import 'package:debtrak/pages/page.dart';
 import 'package:debtrak/pages/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 

@@ -88,7 +88,7 @@ flutter pub get
 ### 3. **Run the app**
 
 ```bash
-flutter run
+flutter run -d <emulator_name>
 ```
 
 ---

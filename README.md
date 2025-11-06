@@ -42,7 +42,7 @@ Debtrak provides a clean and structured way to record debts, monitor balances, a
 
 * **Flutter** (Dart)
 * State management: Provider / Riverpod / Bloc *(project dependent)*
-* Database: Hive / SQLite
+* Database: Hive / SQLite / DuckDB
 * Charts: fl_chart
 * Optional backend: Firebase / Supabase
 

@@ -37,6 +37,10 @@ dependencies:
   google_fonts: ^6.3.2
   google_nav_bar: ^5.0.7
   lucide_icons_flutter: ^3.1.5
+  date_time_format: ^2.0.1
+  provider:
+  fl_chart: ^1.1.1
+  number_formatter2: ^0.0.4
 
 dev_dependencies:
   flutter_test:

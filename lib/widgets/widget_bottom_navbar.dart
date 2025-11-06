@@ -1,6 +1,5 @@
 import 'package:debtrak/core/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class DebtrakBottomNavbar extends StatefulWidget {
   final void Function(int)? onTap;
@@ -25,31 +24,36 @@ class _DebtrakBottomNavbarState extends State<DebtrakBottomNavbar> {
           icon: Icon(Icons.timeline_outlined),
           label: "History",
           activeIcon: Icon(Icons.timeline),
+          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.account_balance_wallet_outlined),
           label: "Debtors",
           activeIcon: Icon(Icons.account_balance_wallet),
+          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),
           label: "Home",
           activeIcon: Icon(Icons.home_filled),
+          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.note_alt_outlined),
           label: "Notes",
           activeIcon: Icon(Icons.note_alt),
+          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.insert_chart_outlined),
           label: "Reports",
           activeIcon: Icon(Icons.insert_chart),
+          backgroundColor: Colors.white,
         ),
       ],
       backgroundColor: Colors.white,
-      selectedItemColor: Color(DebtrakColors().primary),
-      unselectedItemColor: Colors.grey,
+      fixedColor: DebtrakPalette.blue.strong,
+      unselectedItemColor: Colors.grey.withValues(alpha: 0.50),
       currentIndex: widget.selectedIndx,
       iconSize: 30.0,
       selectedFontSize: 16.0,

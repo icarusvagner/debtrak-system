@@ -11,23 +11,12 @@ class StatusTeller extends StatelessWidget {
     return Row(
       spacing: 6.0,
       children: [
-        CircleAvatar(
-          radius: 6.0,
-          backgroundColor: status.name == 'active'
-              ? Colors.green
-              : status.name == 'pastDue'
-              ? Colors.orangeAccent
-              : Colors.red,
-        ),
+        CircleAvatar(radius: 6.0, backgroundColor: statusColor[status]!),
         Text(
-          status.name.toUpperCase(),
+          statusNames[status]!,
           textAlign: TextAlign.start,
           style: GoogleFonts.roboto(
-            color: status.name == 'active'
-                ? Colors.green
-                : status.name == 'pastDue'
-                ? Colors.orangeAccent
-                : Colors.red,
+            color: statusColor[status]!,
             fontSize: 12,
             fontWeight: FontWeight.w500,
           ),

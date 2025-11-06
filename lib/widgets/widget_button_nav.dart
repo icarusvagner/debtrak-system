@@ -1,4 +1,4 @@
-import 'package:debtrak/widgets/animated_bar.dart';
+import 'package:debtrak/widgets/widget_animated_bar.dart';
 import 'package:flutter/material.dart';
 
 class ButtonNav extends StatelessWidget {
@@ -12,7 +12,7 @@ class ButtonNav extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AnimatedBar(isActive: true),
+        WidgetAnimatedBar(isActive: true),
         SizedBox(height: 36, width: 36, child: Icon(icon, size: 32)),
       ],
     );

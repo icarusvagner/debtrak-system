@@ -1,9 +1,21 @@
-enum Status { active, pastDue, overDue }
+import 'package:flutter/material.dart';
+
+enum Status { active, pastDue, overDue, paid, late }
 
 Map<Status, String> statusNames = {
   Status.active: 'Active',
   Status.pastDue: 'Past due',
   Status.overDue: 'Over due',
+  Status.paid: 'Paid',
+  Status.late: 'Late Payment',
+};
+
+Map<Status, Color> statusColor = {
+  Status.active: Colors.green,
+  Status.pastDue: Colors.orangeAccent,
+  Status.overDue: Colors.redAccent,
+  Status.paid: Colors.blue,
+  Status.late: Colors.deepOrange,
 };
 
 class Constant {

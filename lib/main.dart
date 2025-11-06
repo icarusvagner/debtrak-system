@@ -1,9 +1,15 @@
-import 'package:debtrak/core/utils/colors.dart';
-import 'package:debtrak/pages/home_page.dart';
+import 'package:debtrak/core/utils/layout_type.dart';
+import 'package:debtrak/pages/page_home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const DebtrakApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => LayoutController(),
+      child: const DebtrakApp(),
+    ),
+  );
 }
 
 class DebtrakApp extends StatelessWidget {
@@ -13,9 +19,8 @@ class DebtrakApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      color: Color(DebtrakColors().primary),
+      color: Colors.white,
       title: "Debtrak",
-      theme: ThemeData(primaryColor: Color(DebtrakColors().primary)),
       home: HomePage(),
     );
   }

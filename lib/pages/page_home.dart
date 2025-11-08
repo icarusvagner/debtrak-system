@@ -1,7 +1,7 @@
 import 'package:debtrak/core/utils/layout_type.dart';
 import 'package:debtrak/pages/debtors/page_debtor.dart';
 import 'package:debtrak/pages/page_history.dart';
-import 'package:debtrak/pages/page_main.dart';
+import 'package:debtrak/pages/home/page_main.dart';
 import 'package:debtrak/pages/page_note.dart';
 import 'package:debtrak/pages/page_reports.dart';
 import 'package:debtrak/widgets/widget_bottom_navbar.dart';
@@ -24,7 +24,9 @@ class _HomePageState extends State<HomePage> {
     LayoutType.debtorsPage: LayoutConfig(
       builder: (args) => DebtorsPage(id: args),
     ),
-    LayoutType.homePage: LayoutConfig(builder: (_) => MainPage()),
+    LayoutType.homePage: LayoutConfig(
+      builder: (args) => MainPage(canSetBalance: args),
+    ),
     LayoutType.notesPage: LayoutConfig(builder: (args) => NotesPage(id: args)),
     LayoutType.reportsPage: LayoutConfig(builder: (_) => ReportsPage()),
   };

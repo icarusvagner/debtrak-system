@@ -1,3 +1,4 @@
+import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/widgets/widget_custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +31,18 @@ class WidgetShowDialog extends StatelessWidget {
               name: "Description",
               textInputType: TextInputType.multiline,
               maxLines: null,
+            ),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty<Color>.fromMap(
+                DebtrakPalette.emerald.dark,
+              ),
+            ),
+            onPressed: () {},
+            child: Text(
+              "Create",
+              style: TextStyle(color: Colors.black87, fontSize: 16),
             ),
           ),
         ],

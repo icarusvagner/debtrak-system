@@ -4,6 +4,8 @@ enum Status { active, pastDue, overDue, paid, late }
 
 enum SortOptions { nameAZ, highestDebt, nearestDueDate, latestAdded }
 
+enum BalanceOptions { updateBalance, resetBalance }
+
 Map<Status, String> statusNames = {
   Status.active: 'Active',
   Status.pastDue: 'Past due',

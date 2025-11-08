@@ -51,7 +51,7 @@ class _DebtorsPageState extends State<DebtorsPageStateFul> {
       body: Stack(
         children: [
           // blue gradient header
-          WidgetPageHeader(height: 180),
+          WidgetPageHeader(height: 220),
 
           SingleChildScrollView(
             child: Column(
@@ -218,7 +218,7 @@ class _DebtorsPageState extends State<DebtorsPageStateFul> {
         onPressed: () => Provider.of<LayoutController>(
           context,
           listen: false,
-        ).setLayout(LayoutType.historyPage, args: 0),
+        ).setLayout(LayoutType.debtorsPage, args: 0),
         child: Icon(Icons.add_outlined),
       ),
     );

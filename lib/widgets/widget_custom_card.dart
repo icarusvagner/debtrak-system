@@ -30,6 +30,7 @@ class WidgetCustomCard extends StatelessWidget {
         ],
       ),
       margin: margin ?? const EdgeInsets.all(0.0),
+      width: double.infinity,
       child: Padding(
         padding: padding ?? const EdgeInsets.all(12.0),
         child: child,

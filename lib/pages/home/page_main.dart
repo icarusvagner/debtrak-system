@@ -1,15 +1,17 @@
 import 'package:date_time_format/date_time_format.dart';
-import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/data/quick_action_details.dart';
 import 'package:debtrak/widgets/widget_action_btn.dart';
 import 'package:debtrak/widgets/widget_header_bar.dart';
 import 'package:debtrak/widgets/widget_line_chart.dart';
+import 'package:debtrak/widgets/widget_page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:number_formatter2/number_formatter2.dart';
 
 class MainPage extends StatelessWidget {
-  MainPage({super.key});
+  final int? canSetBalance;
+  MainPage({super.key, this.canSetBalance});
 
   final dateTime = DateTime.now();
   final quickActionDetails = QuickActionDetails();
@@ -21,16 +23,7 @@ class MainPage extends StatelessWidget {
       body: Stack(
         children: [
           // Blue gradient header
-          Container(
-            height: 410,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [DebtrakPalette.blue.deep, DebtrakPalette.blue.dark],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-          ),
+          WidgetPageHeader(height: 410),
           // Main scrollable content
           SingleChildScrollView(
             child: Column(
@@ -80,7 +73,7 @@ class MainPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                           Text(
-                            "148,230",
+                            NumberFormatter.format(148230),
                             textAlign: TextAlign.center,
                             style: GoogleFonts.outfit(
                               color: Colors.white,
@@ -181,6 +174,7 @@ class MainPage extends StatelessWidget {
                         ),
                         itemBuilder: (context, index) =>
                             WidgetQuickActionButton(
+                              args: quickActionDetails.actionButton[index].args,
                               icon: quickActionDetails.actionButton[index].icon,
                               label:
                                   quickActionDetails.actionButton[index].label,

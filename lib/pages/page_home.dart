@@ -1,5 +1,5 @@
 import 'package:debtrak/core/utils/layout_type.dart';
-import 'package:debtrak/pages/page_debtor.dart';
+import 'package:debtrak/pages/debtors/page_debtor.dart';
 import 'package:debtrak/pages/page_history.dart';
 import 'package:debtrak/pages/page_main.dart';
 import 'package:debtrak/pages/page_note.dart';
@@ -52,7 +52,6 @@ class _HomePageState extends State<HomePage> {
     final controller = Provider.of<LayoutController>(context);
     final config = layoutRoutes[layout]!;
 
-    print(controller.args);
     return config.build(controller.args);
   }
 }

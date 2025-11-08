@@ -47,21 +47,21 @@ class _DialogHeader extends StatelessWidget {
       alignment: Alignment.center,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Container(
+              padding: EdgeInsets.all(2.5),
+              child: Icon(Icons.arrow_back_rounded, size: 32),
+            ),
+          ),
+          const SizedBox(width: 45),
           Text(
             "Create your new note",
             style: GoogleFonts.inter(
               color: Colors.black87,
               fontSize: 22,
               fontWeight: FontWeight.w600,
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              padding: EdgeInsets.all(2.5),
-              child: Icon(Icons.close, size: 32),
             ),
           ),
         ],

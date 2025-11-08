@@ -7,6 +7,7 @@ class QuickActionDetails {
     QuickActionModel(
       icon: LucideIcons.userPlus,
       label: "New debtor",
+      args: 0,
       goToLayout: LayoutType.debtorsPage,
     ),
     QuickActionModel(
@@ -15,9 +16,10 @@ class QuickActionDetails {
       goToLayout: LayoutType.notesPage,
     ),
     QuickActionModel(
-      icon: LucideIcons.banknote,
-      label: "Payment",
-      goToLayout: LayoutType.debtorsPage,
+      icon: LucideIcons.banknoteArrowUp,
+      label: "Set Balance",
+      goToLayout: LayoutType.homePage,
+      args: 0
     ),
   ];
 }

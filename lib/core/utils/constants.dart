@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 enum Status { active, pastDue, overDue, paid, late }
 
+enum SortOptions { nameAZ, highestDebt, nearestDueDate, latestAdded }
+
 Map<Status, String> statusNames = {
   Status.active: 'Active',
   Status.pastDue: 'Past due',

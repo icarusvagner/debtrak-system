@@ -8,24 +8,23 @@ class WidgetQuickActionButton extends StatelessWidget {
   final IconData icon;
   final String label;
   final LayoutType goToLayout;
+  final dynamic args;
 
   const WidgetQuickActionButton({
     super.key,
     required this.icon,
     required this.label,
     required this.goToLayout,
+    this.args,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        final controller = Provider.of<LayoutController>(
-          context,
-          listen: false,
-        );
-        controller.setLayout(goToLayout);
-      },
+      onTap: () => Provider.of<LayoutController>(
+        context,
+        listen: false,
+      ).setLayout(goToLayout, args: args),
       child: Container(
         width: 110,
         padding: const EdgeInsets.all(12.0),

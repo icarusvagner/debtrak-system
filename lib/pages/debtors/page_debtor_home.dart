@@ -1,22 +1,25 @@
-import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/core/utils/constants.dart';
+import 'package:debtrak/core/utils/layout_type.dart';
 import 'package:debtrak/data/debtors_data.dart';
+import 'package:debtrak/widgets/widget_page_header.dart';
+import 'package:flutter/material.dart';
+import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/widgets/widget_custom_card.dart';
 import 'package:debtrak/widgets/widget_custom_textfield.dart';
 import 'package:debtrak/widgets/widget_debtor_card.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:provider/provider.dart';
 
-class DebtorsPage extends StatefulWidget {
+class DebtorsPageStateFul extends StatefulWidget {
   final int? id;
-  const DebtorsPage({super.key, this.id});
+  const DebtorsPageStateFul({super.key, this.id});
 
   @override
-  State<DebtorsPage> createState() => _DebtorsPageState();
+  State<StatefulWidget> createState() => _DebtorsPageState();
 }
 
-class _DebtorsPageState extends State<DebtorsPage> {
+class _DebtorsPageState extends State<DebtorsPageStateFul> {
   @override
   Widget build(BuildContext context) {
     final searchTextController = TextEditingController();
@@ -28,33 +31,19 @@ class _DebtorsPageState extends State<DebtorsPage> {
     final filtersName = ["All", "Active", "Overdue", "Settled", "Archived"];
     String selectedStatus = "";
     final statusFilters = [
-      {"label": "All", "icon": Icons.filter_alt_rounded},
-      {"label": "Active", "icon": Icons.play_arrow_rounded},
-      {"label": "Overdue", "icon": Icons.warning_amber_rounded},
-      {"label": "Settled", "icon": Icons.check_circle_rounded},
-      {"label": "Archived", "icon": Icons.archive_rounded},
+      {"label": "All", "icon": LucideIcons.funnel},
+      {"label": "Active", "icon": LucideIcons.play},
+      {"label": "Overdue", "icon": LucideIcons.triangleAlert},
+      {"label": "Settled", "icon": LucideIcons.circleCheckBig},
+      {"label": "Archived", "icon": LucideIcons.archive},
     ];
 
-    String selectedAmount = "";
-    final amountFilters = [
-      "Any Amount",
-      "₱1 – ₱999",
-      "₱1,000 – ₱4,999",
-      "₱5,000 – ₱9,999",
-      "₱10,000+",
-    ];
-
-    String selectedDateFilter = "";
-    final dateFilters = [
-      {"label": "This Month", "icon": Icons.calendar_month_rounded},
-      {"label": "Next Month", "icon": Icons.date_range_rounded},
-      {"label": "Overdue", "icon": Icons.timer_off_rounded},
-    ];
+    SortOptions selectedSortOptions;
     final sortOptions = [
-      "Name (A–Z)",
-      "Highest Debt",
-      "Nearest Due Date",
-      "Latest Added",
+      {"label": "Name (A-Z)", "value": SortOptions.nameAZ},
+      {"label": "Highest Debt", "value": SortOptions.highestDebt},
+      {"label": "Nearest Due Date", "value": SortOptions.nearestDueDate},
+      {"label": "Latest Added", "value": SortOptions.latestAdded},
     ];
 
     return Scaffold(
@@ -62,17 +51,7 @@ class _DebtorsPageState extends State<DebtorsPage> {
       body: Stack(
         children: [
           // blue gradient header
-          Container(
-            padding: EdgeInsets.all(15.0),
-            height: 180,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [DebtrakPalette.blue.deep, DebtrakPalette.blue.dark],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-          ),
+          WidgetPageHeader(height: 180),
 
           SingleChildScrollView(
             child: Column(
@@ -88,14 +67,38 @@ class _DebtorsPageState extends State<DebtorsPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Active Debtors",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.outfit(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(width: 98),
+                            Text(
+                              "Active Debtors",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.outfit(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            PopupMenuButton<SortOptions>(
+                              initialValue: SortOptions.nameAZ,
+                              onSelected: (SortOptions val) => setState(() {
+                                selectedSortOptions = val;
+                              }),
+                              icon: Icon(
+                                LucideIcons.chevronDown,
+                                color: Colors.white,
+                              ),
+                              itemBuilder: (BuildContext context) =>
+                                  sortOptions.map((item) {
+                                    final label = item["label"] as String;
+                                    return PopupMenuItem<SortOptions>(
+                                      value: item["value"] as SortOptions,
+                                      child: Text(label),
+                                    );
+                                  }).toList(),
+                            ),
+                          ],
                         ),
                         Text(
                           "${filteredDebtor.length} Open Records",
@@ -125,7 +128,7 @@ class _DebtorsPageState extends State<DebtorsPage> {
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       const SizedBox(height: 40),
 
                       WidgetCustomTextfield(
@@ -180,45 +183,6 @@ class _DebtorsPageState extends State<DebtorsPage> {
                       ),
                       const SizedBox(height: 25),
 
-                      /// Amount filter dropdown
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Date Filters",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: dateFilters.map((item) {
-                          final label = item["label"] as String;
-
-                          return FilterChip(
-                            backgroundColor: Colors.white,
-                            avatar: Icon(
-                              item["icon"] as IconData,
-                              size: 18,
-                              color: DebtrakPalette.blue.deep,
-                            ),
-                            label: Text(
-                              label,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: DebtrakPalette.blue.deep),
-                            ),
-                            selected: selectedDateFilter == label,
-                            onSelected: (_) {
-                              setState(() => selectedDateFilter = label);
-                            },
-                          );
-                        }).toList(),
-                      ),
-                      const SizedBox(height: 25),
-
                       /// LIST OF DEBTORS
                       ListView.builder(
                         shrinkWrap: true,
@@ -251,7 +215,10 @@ class _DebtorsPageState extends State<DebtorsPage> {
       ),
       floatingActionButton: FloatingActionButton.small(
         tooltip: "Add Debtor",
-        onPressed: () {},
+        onPressed: () => Provider.of<LayoutController>(
+          context,
+          listen: false,
+        ).setLayout(LayoutType.historyPage, args: 0),
         child: Icon(Icons.add_outlined),
       ),
     );

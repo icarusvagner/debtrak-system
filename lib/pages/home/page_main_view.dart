@@ -226,6 +226,7 @@ class _BalanceOptionsState extends State<_BalanceOptions> {
     final options = [
       {"label": "Update Balance", "value": BalanceOptions.updateBalance},
       {"label": "Reset Balance", "value": BalanceOptions.resetBalance},
+      {"label": "View Balances", "value": BalanceOptions.showBalance},
     ];
 
     return PopupMenuButton<BalanceOptions>(
@@ -235,7 +236,10 @@ class _BalanceOptionsState extends State<_BalanceOptions> {
       itemBuilder: (BuildContext context) => options.map((item) {
         return PopupMenuItem<BalanceOptions>(
           value: item["value"] as BalanceOptions,
-          child: Text(item["label"] as String, textAlign: TextAlign.center),
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(item["label"] as String, textAlign: TextAlign.center),
+          ),
         );
       }).toList(),
     );

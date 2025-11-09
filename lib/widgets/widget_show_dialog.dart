@@ -34,11 +34,6 @@ class WidgetShowDialog extends StatelessWidget {
             ),
           ),
           TextButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty<Color>.fromMap(
-                DebtrakPalette.emerald.dark,
-              ),
-            ),
             onPressed: () {},
             child: Text(
               "Create",

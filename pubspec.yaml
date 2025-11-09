@@ -41,6 +41,7 @@ dependencies:
   provider:
   fl_chart: ^1.1.1
   number_formatter2: ^0.0.4
+  dart_duckdb: ^1.2.2
 
 dev_dependencies:
   flutter_test:

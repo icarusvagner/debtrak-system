@@ -24,20 +24,29 @@ class WidgetShowDialog extends StatelessWidget {
             name: "Note Title",
           ),
           const SizedBox(height: 18),
-          Expanded(
-            child: WidgetCustomTextfield(
-              controller: descController,
-              suffixIcon: Icons.description,
-              name: "Description",
-              textInputType: TextInputType.multiline,
-              maxLines: null,
-            ),
+          WidgetCustomTextfield(
+            controller: descController,
+            suffixIcon: Icons.description,
+            name: "Description",
+            textInputType: TextInputType.multiline,
+            maxLines: null,
           ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Create",
-              style: TextStyle(color: Colors.black87, fontSize: 16),
+
+          const SizedBox(height: 35),
+
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 40,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: DebtrakPalette.blue.strong,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
+              child: Text(
+                "Create Note",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
             ),
           ),
         ],

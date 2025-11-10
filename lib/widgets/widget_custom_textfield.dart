@@ -11,6 +11,8 @@ class WidgetCustomTextfield extends StatelessWidget {
   final TextInputType textInputType;
   final int? maxLines;
   final int? maxLength;
+  final bool? readOnly;
+  final Function()? onTap;
 
   const WidgetCustomTextfield({
     super.key,
@@ -22,6 +24,8 @@ class WidgetCustomTextfield extends StatelessWidget {
     this.textInputType = TextInputType.text,
     this.maxLines,
     this.maxLength,
+    this.readOnly,
+    this.onTap,
   });
 
   @override
@@ -36,6 +40,7 @@ class WidgetCustomTextfield extends StatelessWidget {
       keyboardType: textInputType,
       textAlign: TextAlign.left,
       style: GoogleFonts.roboto(color: Colors.black87, fontSize: 16),
+      readOnly: readOnly ?? false,
       decoration: InputDecoration(
         suffixIcon: Icon(suffixIcon, color: Colors.black54),
         isDense: true,
@@ -55,6 +60,7 @@ class WidgetCustomTextfield extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
       ),
+      onTap: onTap,
     );
   }
 }

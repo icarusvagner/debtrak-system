@@ -3,7 +3,6 @@ import 'package:debtrak/widgets/widget_custom_textfield.dart';
 import 'package:debtrak/widgets/widget_page_header.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class NewDebtorStateful extends StatefulWidget {
   const NewDebtorStateful({super.key});
@@ -16,7 +15,8 @@ class _NewDebtorState extends State<NewDebtorStateful> {
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
   final descController = TextEditingController();
-  final dateController = TextEditingController();
+  final dateSettledController = TextEditingController();
+  final dateReleaseController = TextEditingController();
   final interestController = TextEditingController();
 
   @override
@@ -90,7 +90,7 @@ class _NewDebtorState extends State<NewDebtorStateful> {
                             child: WidgetCustomTextfield(
                               controller: fnameController,
                               name: "Firstname",
-                              suffixIcon: LucideIcons.userRound,
+                              suffixIcon: Icons.person_outlined,
                             ),
                           ),
 
@@ -100,7 +100,7 @@ class _NewDebtorState extends State<NewDebtorStateful> {
                             child: WidgetCustomTextfield(
                               controller: lnameController,
                               name: "Lastname",
-                              suffixIcon: LucideIcons.userRound,
+                              suffixIcon: Icons.badge_outlined,
                             ),
                           ),
                         ],
@@ -108,12 +108,30 @@ class _NewDebtorState extends State<NewDebtorStateful> {
 
                       const SizedBox(height: 15),
 
-                      WidgetCustomTextfield(
-                        controller: dateController,
-                        name: "Date settled",
-                        suffixIcon: Icons.calendar_month,
-                        readOnly: true,
-                        onTap: () => _selectDate(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: WidgetCustomTextfield(
+                              controller: dateSettledController,
+                              name: "Release Date",
+                              suffixIcon: Icons.calendar_today,
+                              readOnly: true,
+                              onTap: () => _selectDateSettle(),
+                            ),
+                          ),
+
+                          const SizedBox(width: 15),
+
+                          Expanded(
+                            child: WidgetCustomTextfield(
+                              controller: dateReleaseController,
+                              name: "Date settled",
+                              suffixIcon: Icons.event,
+                              readOnly: true,
+                              onTap: () => _selectDateRelease(),
+                            ),
+                          ),
+                        ],
                       ),
 
                       const SizedBox(height: 15),
@@ -159,7 +177,7 @@ class _NewDebtorState extends State<NewDebtorStateful> {
     );
   }
 
-  Future<void> _selectDate() async {
+  Future<void> _selectDateSettle() async {
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -169,7 +187,22 @@ class _NewDebtorState extends State<NewDebtorStateful> {
 
     if (picked != null) {
       setState(() {
-        dateController.text = picked.toString().split(" ")[0];
+        dateSettledController.text = picked.toString().split(" ")[0];
+      });
+    }
+  }
+
+  Future<void> _selectDateRelease() async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1999),
+      lastDate: DateTime(2200),
+    );
+
+    if (picked != null) {
+      setState(() {
+        dateReleaseController.text = picked.toString().split(" ")[0];
       });
     }
   }

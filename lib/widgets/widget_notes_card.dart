@@ -1,6 +1,7 @@
 import 'package:date_time_format/date_time_format.dart';
 import 'package:debtrak/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class WidgetNotesCard extends StatelessWidget {
   final String title;
@@ -18,12 +19,23 @@ class WidgetNotesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime dateTime = DateTime.parse(datePosted);
 
-    return Row(
-      children: [
-        _leftPartCard(dateTime, context),
-        const SizedBox(width: 8),
-        _centerPartCard(title, note, dateTime),
-      ],
+    return GestureDetector(
+      onTap: () {
+        final slidable = Slidable.of(context)!;
+        final isClosed = slidable.actionPaneType.value == ActionPaneType.none;
+        if (isClosed) {
+          slidable.openStartActionPane();
+        } else {
+          slidable.close();
+        }
+      },
+      child: Row(
+        children: [
+          _leftPartCard(dateTime, context),
+          const SizedBox(width: 8),
+          _centerPartCard(title, note, dateTime),
+        ],
+      ),
     );
   }
 

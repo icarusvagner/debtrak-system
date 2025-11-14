@@ -134,68 +134,70 @@ class _NotesPageState extends State<NotesPage> {
 
                       const SizedBox(height: 25),
 
-                      ListView.builder(
-                        itemCount: data.length,
-                        shrinkWrap: true,
-                        physics: const ScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final note = data[index];
+                      SlidableAutoCloseBehavior(
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            final note = data[index];
 
-                          return Slidable(
-                            key: Key(note.datePosted),
-                            startActionPane: ActionPane(
-                              motion: const StretchMotion(),
-                              dismissible: DismissiblePane(
-                                onDismissed: () => _onDismissed(
-                                  index,
-                                  note_action.Actions.archive,
-                                ),
-                              ),
-                              children: [
-                                SlidableAction(
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Colors.blue,
-                                  icon: Icons.archive,
-                                  label: 'Archive',
-                                  onPressed: (context) => _onDismissed(
+                            return Slidable(
+                              key: Key(note.datePosted),
+                              startActionPane: ActionPane(
+                                motion: const StretchMotion(),
+                                dismissible: DismissiblePane(
+                                  onDismissed: () => _onDismissed(
                                     index,
                                     note_action.Actions.archive,
                                   ),
                                 ),
-                              ],
-                            ),
-                            endActionPane: ActionPane(
-                              motion: const BehindMotion(),
-                              dismissible: DismissiblePane(
-                                onDismissed: () => _onDismissed(
-                                  index,
-                                  note_action.Actions.delete,
-                                ),
+                                children: [
+                                  SlidableAction(
+                                    backgroundColor: Colors.transparent,
+                                    foregroundColor: Colors.blue,
+                                    icon: Icons.archive,
+                                    label: 'Archive',
+                                    onPressed: (context) => _onDismissed(
+                                      index,
+                                      note_action.Actions.archive,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              children: [
-                                SlidableAction(
-                                  backgroundColor: Colors.transparent,
-                                  foregroundColor: Colors.red,
-                                  icon: Icons.delete,
-                                  label: "Delete",
-                                  onPressed: (context) => _onDismissed(
+                              endActionPane: ActionPane(
+                                motion: const BehindMotion(),
+                                dismissible: DismissiblePane(
+                                  onDismissed: () => _onDismissed(
                                     index,
                                     note_action.Actions.delete,
                                   ),
                                 ),
-                              ],
-                            ),
-
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: WidgetNotesCard(
-                                title: note.title,
-                                note: note.note,
-                                datePosted: note.datePosted,
+                                children: [
+                                  SlidableAction(
+                                    backgroundColor: Colors.transparent,
+                                    foregroundColor: Colors.red,
+                                    icon: Icons.delete,
+                                    label: "Delete",
+                                    onPressed: (context) => _onDismissed(
+                                      index,
+                                      note_action.Actions.delete,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          );
-                        },
+
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: WidgetNotesCard(
+                                  title: note.title,
+                                  note: note.note,
+                                  datePosted: note.datePosted,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -223,6 +225,7 @@ class _NotesPageState extends State<NotesPage> {
 
   void _onDismissed(int index, note_action.Actions action) {
     final note = data[index];
+    setState(() => data.removeAt(index));
 
     switch (action) {
       case note_action.Actions.share:

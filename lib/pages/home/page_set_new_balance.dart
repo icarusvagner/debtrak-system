@@ -7,15 +7,25 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:number_formatter2/number_formatter2.dart';
 
-class PageSetNewBalance extends StatelessWidget {
+class PageSetNewBalance extends StatefulWidget {
   const PageSetNewBalance({super.key});
 
   @override
+  State<PageSetNewBalance> createState() => _PageSetNewBalanceState();
+}
+
+class _PageSetNewBalanceState extends State<PageSetNewBalance> {
+  final balanceInputController = TextEditingController();
+  final choicesAmount = BalanceAmountData();
+
+  @override
+  void dispose() {
+    balanceInputController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final balanceInputController = TextEditingController();
-
-    final choicesAmount = BalanceAmountData();
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -100,7 +110,11 @@ class PageSetNewBalance extends StatelessWidget {
                           return CustomButton(
                             width: double.infinity,
                             outlined: true,
-                            onTap: item.onTap,
+                            onTap: () => setState(
+                              () => balanceInputController.text = item
+                                  .onTap()!
+                                  .toString(),
+                            ),
                             child: Text(
                               NumberFormatter.format(item.label),
                               textAlign: TextAlign.center,

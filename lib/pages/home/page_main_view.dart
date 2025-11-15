@@ -1,5 +1,4 @@
 import 'package:debtrak/core/utils/constants.dart';
-import 'package:debtrak/core/utils/layout_type.dart';
 import 'package:debtrak/data/home_menu_data.dart';
 import 'package:flutter/material.dart';
 import 'package:debtrak/data/quick_action_details.dart';
@@ -11,7 +10,6 @@ import 'package:debtrak/widgets/widget_page_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:number_formatter2/number_formatter2.dart';
-import 'package:provider/provider.dart';
 
 class PageMainView extends StatefulWidget {
   const PageMainView({super.key});

@@ -28,7 +28,6 @@ class _DebtorsPageState extends State<DebtorsPageStateFul> {
         .where((i) => i.status != Status.paid)
         .toList();
 
-    final filtersName = ["All", "Active", "Overdue", "Settled", "Archived"];
     String selectedStatus = "";
     final statusFilters = [
       {"label": "All", "icon": LucideIcons.funnel},

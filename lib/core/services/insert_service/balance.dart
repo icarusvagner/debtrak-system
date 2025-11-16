@@ -1,12 +1,30 @@
-import 'package:debtrak/core/migrations/balance.dart';
-import 'package:debtrak/core/services/db_service.dart';
+final String tableBal = "balance_tbl";
+final String colId = 'id';
+final String colBal = "balance";
+final String colCreated = "created_at";
+final String colUpdated = "updated_at";
 
-class BalanceTask {
-  void addNewBalance(int balance) async {
-    int newBal = balance;
-    final instance = DatabaseService.instance;
-    final db = await instance.database;
+class Balance {
+  int? id;
+  int? balance;
+  String? createdAt;
+  String? updatedAt;
 
-    await db.insert(balanceTableName, {"balance": newBal});
+  Map<String, Object?> toMap() {
+    var map = <String, Object?>{colBal: balance};
+
+    if (id != null) {
+      map[colId] = id;
+    }
+    return map;
+  }
+
+  Balance();
+
+  Balance.fromMap(Map<String, Object?> map) {
+    id = map[colId];
+    balance = map[colBal];
+    createdAt = map[colCreated];
+    updatedAt = map[colUpdated];
   }
 }

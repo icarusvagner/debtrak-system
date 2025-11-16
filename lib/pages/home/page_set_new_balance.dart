@@ -1,5 +1,7 @@
+import 'package:debtrak/core/services/insert_service/balance.dart';
 import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/data/balance_amount_data.dart';
+import 'package:debtrak/data/models/balance.dart';
 import 'package:debtrak/widgets/widget_custom_textfield.dart';
 import 'package:debtrak/widgets/widget_page_header.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -151,7 +153,7 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
                           ),
                           const SizedBox(width: 20),
                           CustomButton(
-                            onTap: () {},
+                            onTap: _insertBalance,
                             color: DebtrakPalette.blue.strong,
                             child: Text(
                               "New Balance",
@@ -173,6 +175,18 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
         ],
       ),
     );
+  }
+
+  _insertBalance() async {
+    final raw = balanceInputController.text.replaceAll(',', '');
+    final amount = int.tryParse(raw) ?? 0;
+    final bal = Balance(
+      amount: amount,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+
+    await BalanceRepository.insert(bal);
   }
 }
 

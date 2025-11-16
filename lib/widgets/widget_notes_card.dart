@@ -53,24 +53,24 @@ class WidgetNotesCard extends StatelessWidget {
           Text(
             DateTimeFormat.format(date, format: 'M'),
             style: TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
+              color: Colors.white,
+              fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),
           Text(
             DateTimeFormat.format(date, format: 'd'),
             style: TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
             ),
           ),
           Text(
             DateTimeFormat.format(date, format: 'Y'),
             style: TextStyle(
-              color: Colors.white70,
-              fontSize: 14,
+              color: Colors.white,
+              fontSize: 12,
               fontWeight: FontWeight.w400,
             ),
           ),

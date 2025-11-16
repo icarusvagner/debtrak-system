@@ -23,7 +23,6 @@ class DatabaseService {
       version: 1,
       onCreate: (db, version) {
         db.execute(createBalanceTable);
-        db.execute(createUpdatedBalanceTable);
         db.execute(createRecordsBalanceTable);
       },
     );

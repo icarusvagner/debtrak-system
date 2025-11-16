@@ -1,30 +1,28 @@
+import 'package:debtrak/core/migrations/balance.dart';
+import 'package:debtrak/core/services/db_service.dart';
+import 'package:debtrak/data/models/balance.dart';
+import 'package:sqflite/sql.dart';
+
 final String tableBal = "balance_tbl";
 final String colId = 'id';
 final String colBal = "balance";
 final String colCreated = "created_at";
 final String colUpdated = "updated_at";
 
-class Balance {
-  int? id;
-  int? balance;
-  String? createdAt;
-  String? updatedAt;
+class BalanceRepository {
+  static final _instance = DatabaseService.instance;
 
-  Map<String, Object?> toMap() {
-    var map = <String, Object?>{colBal: balance};
+  static insert(Balance bal) async {
+    final db = await _instance.database;
 
-    if (id != null) {
-      map[colId] = id;
-    }
-    return map;
+    await db.insert(
+      balanceTableName,
+      bal.tomap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
-  Balance();
-
-  Balance.fromMap(Map<String, Object?> map) {
-    id = map[colId];
-    balance = map[colBal];
-    createdAt = map[colCreated];
-    updatedAt = map[colUpdated];
+  static getBalance() async {
+    final db = await _instance.database;
   }
 }

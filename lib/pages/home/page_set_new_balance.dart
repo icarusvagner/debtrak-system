@@ -140,7 +140,7 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CustomButton(
-                            onTap: () {},
+                            onTap: () => _updateBalance(context),
                             color: Colors.black.withValues(alpha: 0.08),
                             child: Text(
                               "Update Balance",
@@ -153,7 +153,7 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
                           ),
                           const SizedBox(width: 20),
                           CustomButton(
-                            onTap: _insertBalance,
+                            onTap: () => _insertBalance(context),
                             color: DebtrakPalette.blue.strong,
                             child: Text(
                               "New Balance",
@@ -177,16 +177,57 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
     );
   }
 
-  _insertBalance() async {
+  _updateBalance(BuildContext context) async {
     final raw = balanceInputController.text.replaceAll(',', '');
     final amount = int.tryParse(raw) ?? 0;
-    final bal = Balance(
+
+    final id = await BalanceRepository.updateBalance(amount);
+
+    if (!context.mounted) return;
+
+    if (id > 0) {
+      balanceInputController.clear();
+      _showSnackBar(context, "Balance Updated Successfully", Colors.blueAccent);
+    }
+  }
+
+  _insertBalance(BuildContext context) async {
+    final raw = balanceInputController.text.replaceAll(',', '');
+    final amount = int.tryParse(raw) ?? 0;
+    final bal = BalanceModel(
       amount: amount,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
 
-    await BalanceRepository.insert(bal);
+    final id = await BalanceRepository.insert(bal);
+
+    if (!context.mounted) return;
+
+    if (id > 0) {
+      balanceInputController.clear();
+      _showSnackBar(
+        context,
+        "Balance Created Successfully",
+        Colors.greenAccent,
+      );
+    }
+  }
+
+  _showSnackBar(BuildContext context, String msg, Color? color) {
+    SnackBar snackBar = SnackBar(
+      content: Text(msg, style: TextStyle(fontSize: 20)),
+      backgroundColor: color ?? Colors.white,
+      dismissDirection: DismissDirection.up,
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.only(
+        bottom: MediaQuery.of(context).size.height - 150,
+        left: 15,
+        right: 15,
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
 

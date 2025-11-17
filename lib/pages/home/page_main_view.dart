@@ -1,5 +1,7 @@
+import 'package:debtrak/core/services/insert_service/balance.dart';
 import 'package:debtrak/core/utils/constants.dart';
 import 'package:debtrak/data/home_menu_data.dart';
+import 'package:debtrak/data/models/balance.dart';
 import 'package:flutter/material.dart';
 import 'package:debtrak/data/quick_action_details.dart';
 import 'package:date_time_format/date_time_format.dart';
@@ -23,6 +25,7 @@ class _PageMainViewState extends State<PageMainView> {
   Widget build(BuildContext context) {
     final quickActionDetails = QuickActionDetails();
     final dateTime = DateTime.now();
+
     int totalBalance = 148230;
 
     return Scaffold(
@@ -85,14 +88,46 @@ class _PageMainViewState extends State<PageMainView> {
                             size: 45,
                             color: Colors.white,
                           ),
-                          Text(
-                            NumberFormatter.format(totalBalance),
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.outfit(
-                              color: Colors.white,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          FutureBuilder<BalanceModel?>(
+                            future: BalanceRepository.getUpdatedBalance(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Text(
+                                  "Loading...",
+                                  style: GoogleFonts.outfit(
+                                    color: Colors.white,
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                );
+                              }
+
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return Text(
+                                  "0.00",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.outfit(
+                                    color: Colors.white,
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                );
+                              }
+
+                              final updatedBalance =
+                                  snapshot.data!.updatedAmount;
+
+                              return Text(
+                                NumberFormatter.format(updatedBalance),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.outfit(
+                                  color: Colors.white,
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -233,9 +268,7 @@ class _BalanceOptionsState extends State<_BalanceOptions> {
       itemBuilder: (BuildContext context) => options.map((item) {
         return PopupMenuItem<BalanceOptions>(
           value: item.opt,
-          onTap: item.callback(() {
-            print("testing");
-          }),
+          onTap: item.callback(() {}),
           child: Container(
             alignment: Alignment.center,
             child: Text(item.label, textAlign: TextAlign.center),

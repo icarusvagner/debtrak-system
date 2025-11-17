@@ -8,7 +8,7 @@ class BalanceAmountData {
   final amounts = [
     BalanceAmountModel(label: 1000, onTap: () => _cbAmount(1000)),
     BalanceAmountModel(label: 3500, onTap: () => _cbAmount(3500)),
-    BalanceAmountModel(label: 5000, onTap: () => _cbAmount(3500)),
+    BalanceAmountModel(label: 5000, onTap: () => _cbAmount(5000)),
     BalanceAmountModel(label: 7500, onTap: () => _cbAmount(7500)),
     BalanceAmountModel(label: 9200, onTap: () => _cbAmount(9200)),
     BalanceAmountModel(label: 10000, onTap: () => _cbAmount(10000)),

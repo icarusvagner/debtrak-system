@@ -6,6 +6,7 @@ const String createBalanceTable =
     '''
    CREATE TABLE $balanceTableName (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
+       status INTEGER NOT NULL DEFAULT 0,
        balance INTEGER NOT NULL DEFAULT 0,
        updated_balance INTEGER NOT NULL DEFAULT 0,
        created_at TEXT,

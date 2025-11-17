@@ -29,4 +29,15 @@ class DatabaseService {
 
     return database;
   }
+
+  Future<void> resetDatabase() async {
+    final dbDirPath = await getDatabasesPath();
+    final dbPath = join(dbDirPath, "debtrak_db.db");
+
+    // Delete the actual DB file
+    await deleteDatabase(dbPath);
+
+    // Force recreation on next access
+    _db = null;
+  }
 }

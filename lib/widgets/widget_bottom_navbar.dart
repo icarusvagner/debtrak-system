@@ -21,9 +21,9 @@ class _DebtrakBottomNavbarState extends State<DebtrakBottomNavbar> {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.timeline_outlined),
-          label: "History",
-          activeIcon: Icon(Icons.timeline),
+          icon: Icon(Icons.home_outlined),
+          label: "Home",
+          activeIcon: Icon(Icons.home_filled),
           backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
@@ -33,21 +33,15 @@ class _DebtrakBottomNavbarState extends State<DebtrakBottomNavbar> {
           backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          label: "Home",
-          activeIcon: Icon(Icons.home_filled),
-          backgroundColor: Colors.white,
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.note_alt_outlined),
           label: "Notes",
           activeIcon: Icon(Icons.note_alt),
           backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.insert_chart_outlined),
-          label: "Reports",
-          activeIcon: Icon(Icons.insert_chart),
+          icon: Icon(Icons.timeline_outlined),
+          label: "History",
+          activeIcon: Icon(Icons.timeline),
           backgroundColor: Colors.white,
         ),
       ],

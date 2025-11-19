@@ -7,7 +7,7 @@ class QuickActionDetails {
     QuickActionModel(
       icon: LucideIcons.userPlus,
       label: "New debtor",
-      args: 0,
+      args: 1,
       goToLayout: LayoutType.debtorsPage,
     ),
     QuickActionModel(
@@ -19,7 +19,7 @@ class QuickActionDetails {
       icon: LucideIcons.banknoteArrowUp,
       label: "Set Balance",
       goToLayout: LayoutType.homePage,
-      args: 0
+      args: 0,
     ),
   ];
 }

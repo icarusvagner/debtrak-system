@@ -178,6 +178,10 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
   }
 
   _updateBalance(BuildContext context) async {
+    if (balanceInputController.text.isEmpty) {
+      return;
+    }
+
     final raw = balanceInputController.text.replaceAll(',', '');
     final amount = int.tryParse(raw) ?? 0;
 
@@ -192,6 +196,10 @@ class _PageSetNewBalanceState extends State<PageSetNewBalance> {
   }
 
   _insertBalance(BuildContext context) async {
+    if (balanceInputController.text.isEmpty) {
+      return;
+    }
+
     final raw = balanceInputController.text.replaceAll(',', '');
     final amount = int.tryParse(raw) ?? 0;
     final bal = BalanceModel(

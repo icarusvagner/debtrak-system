@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-enum LayoutType { historyPage, debtorsPage, homePage, notesPage, reportsPage }
+enum LayoutType { homePage, debtorsPage, notesPage, historyPage }
 
 Map<LayoutType, String> layoutNames = {
-  LayoutType.historyPage: "History",
-  LayoutType.debtorsPage: "Debtors",
   LayoutType.homePage: "Home",
+  LayoutType.debtorsPage: "Debtors",
   LayoutType.notesPage: "Notes",
-  LayoutType.reportsPage: "Reports",
+  LayoutType.historyPage: "History",
 };
 
 class LayoutController extends ChangeNotifier {

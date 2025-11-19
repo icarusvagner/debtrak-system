@@ -1,13 +1,14 @@
 import 'package:debtrak/core/services/insert_service/balance.dart';
+import 'package:debtrak/core/utils/colors.dart';
 import 'package:debtrak/core/utils/constants.dart';
 import 'package:debtrak/data/home_menu_data.dart';
 import 'package:debtrak/data/models/balance.dart';
+import 'package:debtrak/widgets/widget_reports.dart';
 import 'package:flutter/material.dart';
 import 'package:debtrak/data/quick_action_details.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:debtrak/widgets/widget_action_btn.dart';
 import 'package:debtrak/widgets/widget_header_bar.dart';
-import 'package:debtrak/widgets/widget_line_chart.dart';
 import 'package:debtrak/widgets/widget_page_header.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
@@ -26,8 +27,6 @@ class _PageMainViewState extends State<PageMainView> {
     final quickActionDetails = QuickActionDetails();
     final dateTime = DateTime.now();
 
-    int totalBalance = 148230;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -42,7 +41,6 @@ class _PageMainViewState extends State<PageMainView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(width: 45),
                     Container(
                       alignment: Alignment.center,
                       child: Container(
@@ -68,7 +66,6 @@ class _PageMainViewState extends State<PageMainView> {
                         ),
                       ),
                     ),
-                    _BalanceOptions(),
                   ],
                 ),
 
@@ -234,7 +231,30 @@ class _PageMainViewState extends State<PageMainView> {
 
                       const SizedBox(height: 25),
 
-                      WidgetLineChartCard(),
+                      SliverGrid.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 12,
+                        children: [],
+                      ),
+
+                      Row(
+                        children: [
+                          WidgetDebtorReports(
+                            color: DebtrakPalette.ruby.strong,
+                            title: "Active Debtors",
+                            icon: Icons.supervisor_account,
+                            count: 25,
+                          ),
+                          const SizedBox(width: 15.0),
+                          WidgetDebtorReports(
+                            color: DebtrakPalette.emerald.strong,
+                            title: "Deducted Amount",
+                            icon: LucideIcons.chartBar,
+                            count: 25,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -217,7 +217,7 @@ class _DebtorsPageState extends State<DebtorsPageStateFul> {
         onPressed: () => Provider.of<LayoutController>(
           context,
           listen: false,
-        ).setLayout(LayoutType.debtorsPage, args: 0),
+        ).setLayout(LayoutType.debtorsPage, args: 1),
         child: Icon(Icons.add_outlined),
       ),
     );

@@ -3,7 +3,6 @@ import 'package:debtrak/pages/debtors/page_debtor.dart';
 import 'package:debtrak/pages/page_history.dart';
 import 'package:debtrak/pages/home/page_main.dart';
 import 'package:debtrak/pages/page_note.dart';
-import 'package:debtrak/pages/page_reports.dart';
 import 'package:debtrak/widgets/widget_bottom_navbar.dart';
 import 'package:debtrak/widgets/widget_main_layout.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +17,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final layoutRoutes = <LayoutType, LayoutConfig>{
-    LayoutType.historyPage: LayoutConfig(
-      builder: (args) => HistoryPage(id: args),
+    LayoutType.homePage: LayoutConfig(
+      builder: (args) => MainPage(canSetBalance: args),
     ),
     LayoutType.debtorsPage: LayoutConfig(
       builder: (args) => DebtorsPage(id: args),
     ),
-    LayoutType.homePage: LayoutConfig(
-      builder: (args) => MainPage(canSetBalance: args),
-    ),
     LayoutType.notesPage: LayoutConfig(builder: (args) => NotesPage(id: args)),
-    LayoutType.reportsPage: LayoutConfig(builder: (_) => ReportsPage()),
+    LayoutType.historyPage: LayoutConfig(
+      builder: (args) => HistoryPage(id: args),
+    ),
   };
 
   @override
